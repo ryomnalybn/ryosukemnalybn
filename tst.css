@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+html{
+	font-family: "Arial";
+	background: #eeeeee;
+}
+
+p{
+	color: black;
+}
+
+h1{font-size: 20px;}
+
+.one{
+	text-align: left;
+}
+
+/* Following is settings for menu;
+ * it is copied from https://qiita.com/7CIT/items/80fc6a43abda2d7f1f25 */
+
+/*Checkbox to check on/off of menu*/
+#menuOn{
+	display:none
+}
+
+menu{
+	position: relative;
+	font-size: 20px;
+	height: 40px;
+	width: 100%;
+	min-width: 200px;
+	background: grey;
+}
+
+/*menu*/
+#menuOn:checked + menu{
+	max-width: 960px;
+	z-index: 20;
+}
+
+/* Overlay:
+ * When the menu is ON,
+ * display a block that covers the whole screen (e.g. LightBox)
+ * By this clicking anywhere outside of menu box is recognised as 
+ * a click for the checkbox; 
+ * thus the menu closes if you click outside the menu box */
+
+#menuOn:checked + menu + div.overlay{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	background: rgba(0,0,0,0.5);
+}
+
+#menuOn:checked + menu ul{
+	display: block;
+}
+
+ul{
+	position: absolute;
+	top: 40px;
+	right: 0;
+	display: none;
+}
+
+li{
+	list-style-type: none;
+	/* Match the background colour to menu element */
+	background: grey;
+	min-width: 105px;
+	max-width: 200px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+li a{
+	display: block;
+	padding: 10px;
+}
+
+/* Humberger Menu */
+#menuOn + menu::after {
+	position: absolute;
+	z-index: 30;
+	display: block;
+	content: '\2261';/* Humberger Menu */
+	line-height: 40px;
+	width: 20px;
+	padding-left: 10px;
+	color: white;
+	right: 0;
+	top: 0;
+	background: grey;
+}
+
+/* Close the menu */
+#menuOn:checked + menu::after {
+	content: 'x'; /* "Close" button */
+}
+
+
